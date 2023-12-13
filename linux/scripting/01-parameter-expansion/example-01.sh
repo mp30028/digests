@@ -2,8 +2,7 @@
 
 module_id=$1;
 input_message=$2;
-default_message="
-	Merge pull request #126 from mp30028/continue_developing_pipelines
+default_message="Merge pull request #126 from mp30028/continue_developing_pipelines
 	updated version.txt to trigger workflows at 12:13 10/12/2023
 	---
 		{\"versioning\": 
@@ -18,9 +17,8 @@ default_message="
 function get_message(){
 	input_value=$1;
 	message=${input_value:=${default_message}};
-	echo "parameter-1 = $1";
-	echo "input_value = ${input_value}";
-	echo "message = ${message}";
+	echo "${message}";
 }
 
 get_message;
+
