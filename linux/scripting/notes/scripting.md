@@ -7,3 +7,7 @@ The  $  character introduces parameter expansion, command substitution, or arith
 
 #### Testing Script
 ![code](./02-testing-variable-expansion.png)
+
+#### Extracting json delimited within some text using sed
+Note the starting delimiter is `---` and the ending delimiter is `===` 
+![example-expression](./03-breakout-json-extraction-using-sed.png)
