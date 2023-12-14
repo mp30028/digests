@@ -67,9 +67,6 @@ echo "${changed_message}";
 echo "============================================================================";
 
 
-### Example to replace matched text
-echo ${msg} | sed 's/.*---/+++/'
-echo
 echo
 echo "----- Extract json from message and replace the delimiters. Ex.3 -------";
 echo "1. changed_message=$(echo \"\${message}\" \| sed 's/.*---/+++/;s/===.*/+++/');"
