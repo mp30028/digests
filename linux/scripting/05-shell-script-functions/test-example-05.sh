@@ -95,22 +95,6 @@ function test_with_invalid_value_msg(){
 	compare_values "test_with_invalid_value_msg" "${expected}" "${actual}";
 }
 
-
-#function test_get_message_with_arguments(){
-#	source ./example-01.sh &>/dev/null;
-#	actual=$(get_message "${expected}");
-#	compare_messages "test_get_message_with_arguments" "${expected}" "${actual}";
-#}
-#
-#function test_example_01_script(){
-#	actual=$(source ./example-01.sh);
-#	compare_messages "test_example_01_script" "${expected}" "${actual}";
-#}
-#
-#test_get_message_with_no_arguments;
-#test_get_message_with_arguments;
-#test_example_01_script;
-
 test_with_valid_msg
 test_with_invalid_msg
 test_with_invalid_json_msg
