@@ -22,3 +22,10 @@ function get_message(){
 
 get_message;
 
+function say_hello(){
+	name=$1;
+	echo "(•◡•) /  - ${name}";
+}
+
+input_name="input name - mp30028";
+echo "$(say_hello "${input_name}")";
