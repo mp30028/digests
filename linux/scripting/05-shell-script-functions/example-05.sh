@@ -2,17 +2,8 @@
 
 default_start_delimiter="---";
 default_end_delimiter="===";
-default_message="Merge pull request #126 from mp30028/continue_developing_pipelines
-	updated version.txt to trigger workflows at 12:13 10/12/2023
-	---
-		{\"versioning\": 
-		  [
-		    {\"module\": \"API\", \"release\": \"MAJOR\"},
-		    {\"module\": \"UI\",\"release\": \"PATCH\"}
-		  ]
-		}
-	===
-";
+default_release_type="PATCH";
+default_message="This is a default test message";
 
 function get_message(){
 	input_value=$1;
@@ -73,24 +64,20 @@ function main(){
 	message="$(get_message "${input_message}")";
 	extracted_json="$(extract_json "${message}")";
 	is_extracted_json_valid="$(validate_json "${extracted_json}")";
-	release_type_from_json="$(get_release_type_from_json "${extracted_json}" "${input_module_id}")";
+	if [[ $is_extracted_json_valid == true ]]; then
+	  release_type_from_json="$(get_release_type_from_json "${extracted_json}" "${input_module_id}")";
+	else
+	  release_type_from_json="$default_release_type";
+	fi;
 	validated_release_type="$(get_validated_release_type "${release_type_from_json}")";
-#	echo "FROM main: message = ${message}";
-#	echo 
-#	echo 
-#	echo "FROM main: extracted_json = ${extracted_json}";
-#	echo 
-#	echo 
-#	echo "FROM main: is_extracted_json_valid = ${is_extracted_json_valid}";
-#	echo 
-#	echo 
-#	echo "FROM main: release_type_from_json = ${release_type_from_json}";
-#	echo 
-#	echo 
-#	echo "FROM main: validated_release_type = ${validated_release_type}";
     echo "${validated_release_type}";
 }
 
 input_module_id=$1;
 input_message=$2;
 echo "$(main)";
+   
+#input_message='${{ steps.head_commit_message.outputs.value }}';
+#input_module_id="${{ inputs.module_id }}";
+#release_type="$(main)";
+#echo "value=$release_type" >> $GITHUB_OUTPUT;
